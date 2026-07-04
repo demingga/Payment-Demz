@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Demz Tmvn • Bayar</title>
+  <!-- Font & ikon -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #1a0b0b; 
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      max-width: 480px;
+      width: 100%;
+      background: linear-gradient(145deg, #2c0f0f, #1f0a0a);
+      border-radius: 48px 48px 32px 32px;
+      padding: 28px 22px 32px;
+      box-shadow: 0 20px 40px rgba(180, 0, 0, 0.5), 0 0 0 2px #cc3333 inset;
+      border: 1px solid #ff4d4d;
+      transition: all 0.2s;
+    }
+
+    /* header */
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+    }
+
+    .brand h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ff7b7b, #ff3b3b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 12px #ff2a2a55;
+    }
+
+    .brand i {
+      color: #ff4d4d;
+      font-size: 28px;
+      filter: drop-shadow(0 0 6px #ff2222);
+    }
+
+    .subhead {
+      color: #ffb3b3;
+      font-weight: 500;
+      font-size: 14px;
+      background: #3a1515;
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 50px;
+      border: 1px solid #cc3b3b;
+      margin-bottom: 28px;
+      letter-spacing: 0.3px;
+    }
+
+    /* semua panel */
+    .pay-panel {
+      background: #250e0e;
+      border-radius: 28px;
+      padding: 16px 18px 18px;
+      margin-bottom: 22px;
+      border: 1px solid #aa2e2e;
+      box-shadow: 0 6px 0 #5f1a1a;
+    }
+
+    .pay-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #ff9999;
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 12px;
+      letter-spacing: 0.2px;
+      border-bottom: 1px dashed #882a2a;
+      padding-bottom: 10px;
+    }
+
+    .pay-label i {
+      color: #ff4d4d;
+      font-size: 20px;
+      width: 28px;
+      text-align: center;
+    }
+
+    .value-box {
+      background: #160808;
+      border-radius: 60px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid #b33a3a;
+      box-shadow: inset 0 2px 6px #00000066;
+      margin-bottom: 10px;
+    }
+
+    .value-box span {
+      color: #fff0f0;
+      font-weight: 600;
+      font-size: 18px;
+      letter-spacing: 0.5px;
+      word-break: break-all;
+    }
+
+    .value-box .copy-btn {
+      background: #b31b1b;
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      padding: 6px 14px;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      box-shadow: 0 3px 0 #5f0e0e;
+      border: 1px solid #e04a4a;
+    }
+
+    .value-box .copy-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #5f0e0e;
+    }
+
+    .value-box .copy-btn i {
+      font-size: 16px;
+    }
+
+    .copy-feedback {
+      color: #7aff8a;
+      font-size: 13px;
+      font-weight: 500;
+      padding-left: 10px;
+      min-height: 24px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* QRIS khusus */
+    .qris-panel {
+      background: #1f0c0c;
+      border-radius: 32px;
+      padding: 18px 16px 20px;
+      border: 2px solid #cc3030;
+      margin-top: 8px;
+    }
+
+    .qris-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .qris-header span {
+      color: #ffb3b3;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 0.3px;
+    }
+
+    .qris-header i {
+      color: #ff4d4d;
+      font-size: 26px;
+      filter: drop-shadow(0 0 6px #ff2020);
+    }
+
+    .qris-img-wrapper {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 12px;
+      display: flex;
+      justify-content: center;
+      border: 2px solid #cc3b3b;
+      box-shadow: 0 8px 0 #631818;
+      margin-bottom: 16px;
+    }
+
+    .qris-img-wrapper img {
+      width: 100%;
+      max-width: 260px;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+      background: #fff;
+      image-rendering: auto;
+    }
+
+    .qris-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-download {
+      background: #b31b1b;
+      border: none;
+      padding: 14px 22px;
+      border-radius: 60px;
+      color: white;
+      font-weight: 700;
+      font-size: 17px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      cursor: pointer;
+      flex: 1 1 auto;
+      min-width: 140px;
+      border: 1px solid #e05555;
+      box-shadow: 0 5px 0 #631212;
+      transition: 0.1s;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-download:active {
+      transform: translateY(4px);
+      box-shadow: 0 1px 0 #631212;
+    }
+
+    .btn-download i {
+      font-size: 20px;
+    }
+
+    .btn-download.qris-copy {
+      background: #2d1414;
+      border-color: #aa3a3a;
+      box-shadow: 0 5px 0 #4d1818;
+    }
+
+    .btn-download.qris-copy:active {
+      transform: translateY(4px);
+      box-shadow: 0 1px 0 #4d1818;
+    }
+
+    .footer-note {
+      margin-top: 22px;
+      text-align: center;
+      color: #b36b6b;
+      font-weight: 500;
+      font-size: 13px;
+      border-top: 1px solid #551c1c;
+      padding-top: 18px;
+      letter-spacing: 0.2px;
+    }
+
+    .footer-note i {
+      color: #ff4d4d;
+    }
+
+    /* notifikasi kecil */
+    .toast-msg {
+      background: #1f2b1a;
+      color: #b9ffb9;
+      padding: 8px 18px;
+      border-radius: 60px;
+      border: 1px solid #5db85d;
+      font-weight: 500;
+      font-size: 14px;
+      display: inline-block;
+      box-shadow: 0 0 12px #2eff2e33;
+      transition: 0.2s;
+    }
+
+    /* responsive */
+    @media (max-width: 450px) {
+      .card { padding: 18px 14px 24px; }
+      .value-box span { font-size: 16px; }
+      .value-box .copy-btn { font-size: 15px; padding: 4px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="main">
+
+    <!-- HEADER -->
+    <div class="brand">
+      <h1>Demz Tmvn</h1>
+      <i class="fas fa-fire"></i>
+    </div>
+    <div class="subhead">
+      <i class="fas fa-check-circle" style="color:#ff6666; margin-right: 6px;"></i> Bayar cepat • aman
+    </div>
+
+    <!-- Dana -->
+    <div class="pay-panel">
+      <div class="pay-label">
+        <i class="fas fa-wallet"></i> Dana
+      </div>
+      <div class="value-box" id="dana-box">
+        <span id="dana-number">083831960212</span>
+        <button class="copy-btn" data-target="dana-number" data-label="Dana">
+          <i class="fas fa-copy"></i> Salin
+        </button>
+      </div>
+      <div id="feedback-dana" class="copy-feedback"></div>
+    </div>
+
+    <!-- Bank Jago Syariah -->
+    <div class="pay-panel">
+      <div class="pay-label">
+        <i class="fas fa-university"></i> Bank Jago Syariah
+      </div>
+      <div class="value-box" id="jago-box">
+        <span id="jago-number">507538488219</span>
+        <button class="copy-btn" data-target="jago-number" data-label="Jago">
+          <i class="fas fa-copy"></i> Salin
+        </button>
+      </div>
+      <div id="feedback-jago" class="copy-feedback"></div>
+    </div>
+
+    <!-- QRIS -->
+    <div class="qris-panel">
+      <div class="qris-header">
+        <span><i class="fas fa-qrcode" style="margin-right: 10px; color:#ff6b6b;"></i> QRIS</span>
+        <i class="fas fa-arrow-right"></i>
+      </div>
+
+      <div class="qris-img-wrapper">
+        <img id="qris-image" src="https://files.catbox.moe/dmd921.jpg" alt="QRIS Demz Tmvn" crossorigin="anonymous">
+      </div>
+
+      <div class="qris-actions">
+        <button class="btn-download" id="downloadQrisBtn">
+          <i class="fas fa-download"></i> Download QRIS
+        </button>
+        <button class="btn-download qris-copy" id="copyQrisLinkBtn">
+          <i class="fas fa-link"></i> Salin Link QR
+        </button>
+      </div>
+      <div id="feedback-qris" class="copy-feedback" style="justify-content:center; margin-top: 12px;"></div>
+    </div>
+
+    <div class="footer-note">
+      <i class="fas fa-shield-alt"></i> Semua data siap salin • QRIS siap unduh
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      "use strict";
+
+      // --- elemen
+      const danaSpan = document.getElementById('dana-number');
+      const jagoSpan = document.getElementById('jago-number');
+      const feedbackDana = document.getElementById('feedback-dana');
+      const feedbackJago = document.getElementById('feedback-jago');
+      const feedbackQris = document.getElementById('feedback-qris');
+      const qrisImg = document.getElementById('qris-image');
+
+      // --- fungsi copy teks (fallback & clipboard API)
+      function copyTextToClipboard(text, feedbackElement, label) {
+        if (!text) return;
+
+        // Gunakan clipboard API jika tersedia
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(() => {
+            showFeedback(feedbackElement, `✅ ${label} tersalin!`, 'success');
+          }).catch(() => {
+            fallbackCopy(text, feedbackElement, label);
+          });
+        } else {
+          fallbackCopy(text, feedbackElement, label);
+        }
+      }
+
+      // fallback manual
+      function fallbackCopy(text, feedbackElement, label) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.left = '-9999px';
+        textarea.style.top = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+
+        try {
+          const success = document.execCommand('copy');
+          if (success) {
+            showFeedback(feedbackElement, `✅ ${label} tersalin!`, 'success');
+          } else {
+            showFeedback(feedbackElement, `⚠️ Gagal salin, coba manual`, 'error');
+          }
+        } catch (e) {
+          showFeedback(feedbackElement, `⚠️ Gagal salin`, 'error');
+        }
+        document.body.removeChild(textarea);
+      }
+
+      function showFeedback(el, msg, type) {
+        if (!el) return;
+        el.innerHTML = `<span class="toast-msg">${msg}</span>`;
+        if (type === 'success') {
+          el.style.color = '#7aff8a';
+        } else {
+          el.style.color = '#ffb07c';
+        }
+        // hilang setelah 3.5 detik
+        if (window.feedbackTimer) clearTimeout(window.feedbackTimer);
+        window.feedbackTimer = setTimeout(() => {
+          if (el) el.innerHTML = '';
+        }, 3200);
+      }
+
+      // --- event copy untuk tombol (Dana & Jago)
+      document.querySelectorAll('.copy-btn[data-target]').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('data-target');
+          const label = this.getAttribute('data-label') || 'Nomor';
+          let textToCopy = '';
+          let feedbackEl = null;
+
+          if (targetId === 'dana-number') {
+            textToCopy = danaSpan.innerText.trim();
+            feedbackEl = feedbackDana;
+          } else if (targetId === 'jago-number') {
+            textToCopy = jagoSpan.innerText.trim();
+            feedbackEl = feedbackJago;
+          } else {
+            return;
+          }
+
+          if (textToCopy) {
+            copyTextToClipboard(textToCopy, feedbackEl, label);
+          } else {
+            showFeedback(feedbackEl, '❌ Data kosong', 'error');
+          }
+        });
+      });
+
+      // --- Download QRIS (dengan fetch + blob)
+      const downloadBtn = document.getElementById('downloadQrisBtn');
+      downloadBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const imgUrl = qrisImg.src;
+        if (!imgUrl || imgUrl === '') {
+          showFeedback(feedbackQris, '❌ URL QRIS kosong', 'error');
+          return;
+        }
+
+        // feedback proses
+        showFeedback(feedbackQris, '⏳ Mengunduh QRIS...', 'success');
+
+        // fetch gambar sebagai blob
+        fetch(imgUrl, { 
+          mode: 'cors', 
+          cache: 'force-cache' 
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.blob();
+        })
+        .then(blob => {
+          // cek tipe
+          const ext = blob.type === 'image/png' ? 'png' : 'jpg';
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = `qris_demz_tmvn.${ext}`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(link.href);
+          showFeedback(feedbackQris, '✅ QRIS berhasil diunduh!', 'success');
+        })
+        .catch(err => {
+          console.warn('Fetch gagal, fallback ke download langsung via anchor', err);
+          // fallback: buka gambar di tab baru + user save as
+          try {
+            const link = document.createElement('a');
+            link.href = imgUrl;
+            link.download = 'qris_demz_tmvn.jpg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showFeedback(feedbackQris, '✅ Download dimulai (fallback)', 'success');
+          } catch (e2) {
+            showFeedback(feedbackQris, '⚠️ Gagal download, coba buka gambar', 'error');
+          }
+        });
+      });
+
+      // --- Salin link QRIS (link gambar)
+      const copyLinkBtn = document.getElementById('copyQrisLinkBtn');
+      copyLinkBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const qrisUrl = qrisImg.src;
+        if (!qrisUrl || qrisUrl === '') {
+          showFeedback(feedbackQris, '❌ Link QRIS kosong', 'error');
+          return;
+        }
+        copyTextToClipboard(qrisUrl, feedbackQris, 'Link QRIS');
+      });
+
+      // --- validasi awal, jika gambar gagal load kasih tau
+      qrisImg.addEventListener('error', function() {
+        feedbackQris.innerHTML = `<span class="toast-msg" style="background:#3d1818;color:#ffa07a;">⚠️ Gagal muat QRIS, cek koneksi</span>`;
+      });
+
+      qrisImg.addEventListener('load', function() {
+        // bersihkan error jika ada
+        if (feedbackQris.innerHTML.includes('Gagal muat')) {
+          feedbackQris.innerHTML = '';
+        }
+      });
+
+      // tambahan: jika gambar dari catbox, handle CORS dengan baik
+      // sudah pakai crossorigin di img
+
+      // --- aksesibilitas tambahan
+      console.log('Demz Tmvn — siap bayar!');
+
+    })();
+  </script>
+
+</body>
+</html>
